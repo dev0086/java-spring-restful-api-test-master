@@ -28,4 +28,17 @@ public class HttpRequestTest {
             )
         ).contains("Clock");
     }
+    
+    public void shouldReturnPersonFromServiceadd() throws Exception {
+        assertThat(
+            this.restTemplate.getForObject(
+                "http://localhost:" + port + "/personadd",
+                String.class
+            )
+        ).contains("");
+    }
 }
+//gradlew clean build
+//gradlew run test 
+//gradlew bootRun --args='--spring.profiles.active=local' --stacktrace
+//http://localhost:8080/person/bally/clock

@@ -14,24 +14,24 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import uk.co.huntersix.spring.rest.model.Person;
-import uk.co.huntersix.spring.rest.referencedata.PersonDataService;
+import uk.co.huntersix.spring.rest.referencedataadd.PersonDataServiceAdd;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(PersonControllerTest.class)
+@WebMvcTest(PersonControllerTestAdd.class)
 //@WebMvcTest(PersonControllerAdd.class)
-public class PersonControllerTest {
+public class PersonControllerTestAdd {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private PersonDataService personDataService;
+    private PersonDataServiceAdd personDataService;
 
     @Test
     public void shouldReturnPersonFromService() throws Exception {
-        when(personDataService.findPerson(any(), any())).thenReturn(new Person("Bally", "Clock"));
-        this.mockMvc.perform(get("/person/Bally/Clock"))
+       // when(personDataServiceAdd.findPerson(any(), any())).thenReturn(new Person("Bally", "Clock"));
+        this.mockMvc.perform(get("/personadd"))
             .andDo(print())
             .andExpect(status().isOk())
             .andExpect(jsonPath("id").exists())

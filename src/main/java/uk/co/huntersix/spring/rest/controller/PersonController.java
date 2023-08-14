@@ -7,17 +7,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uk.co.huntersix.spring.rest.model.Person;
 import uk.co.huntersix.spring.rest.referencedata.PersonDataService;
+import uk.co.huntersix.spring.rest.referencedataadd.PersonDataServiceAdd;
 
 import java.util.List;
 
 @RestController
+//Spring 4.0 introduced the @RestController annotation in order to simplify the creation of 
+//RESTful web services
+// It's a convenient annotation that combines @Controller and @ResponseBody, which eliminates the need to annotate every 
+//request handling method of the controller class with the @ResponseBody annotation.
+
 public class PersonController {
     private PersonDataService personDataService;
+    private PersonDataServiceAdd personDataServiceAdd;
 
     public PersonController(@Autowired PersonDataService personDataService) {
         this.personDataService = personDataService;
     }
-
+    
+    
+    
     //Exercise 2
     @GetMapping("/person/{lastName}/{firstName}")
     public Person person(@PathVariable(value="firstName") String firstName,
@@ -46,9 +55,20 @@ public class PersonController {
 
     //Exercise 4
     @PostMapping("/person/{lastName}/{firstName}")
-    public String addPerson(@PathVariable(value="lastName") String lastName,
-                          @PathVariable(value="firstName") String firstName) {
-        String personDetails = personDataService.addPerson(lastName, firstName);
+    public String addPerson(@PathVariable(value="firstName") String firstName,
+    		                @PathVariable(value="lastName") String lastName) {
+        String personDetails = personDataService.addPerson(firstName,lastName);
         return personDetails;
     }
+    
+    
+   
 }
+    
+   ///////////////////
+    
+   
+    
+    /////////////////////
+    
+   
